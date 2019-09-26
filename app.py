@@ -22,8 +22,8 @@ host = 'localhost'
 dbname = 'druginventory_db'
 pswd = 'shuju'
 
-db = create_engine('postgresql://%s:%s@localhost/%s'%(user,pswd,dbname))
-#db = create_engine('postgres://%s%s/%s'%(user,host,dbname))
+#db = create_engine('postgresql://%s:%s@localhost/%s'%(user,pswd,dbname))
+db = create_engine('postgres://juzjzvinglcfjp:c422d72e8217e6db42dab7d0d414a3283464294e7d3aae8e3d92d82964437a14@ec2-50-19-95-77.compute-1.amazonaws.com:5432/d2difphsu953nk')
 con = None
 con = psycopg2.connect(database = dbname, user = user, password='shuju')
 

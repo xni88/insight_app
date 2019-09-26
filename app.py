@@ -17,15 +17,9 @@ app = Flask(__name__)
 # Python code to connect to Postgres
 # You may need to modify this based on your OS, 
 # as detailed in the postgres dev setup materials.
-user = 'xni' #add your Postgres username here      
-host = 'localhost'
-dbname = 'druginventory_db'
-pswd = 'shuju'
 
-#db = create_engine('postgresql://%s:%s@localhost/%s'%(user,pswd,dbname))
-db = create_engine('postgres://juzjzvinglcfjp:c422d72e8217e6db42dab7d0d414a3283464294e7d3aae8e3d92d82964437a14@ec2-50-19-95-77.compute-1.amazonaws.com:5432/d2difphsu953nk')
-con = None
-con = psycopg2.connect(database = dbname, user = user, password='shuju')
+con = psycopg2.connect(dbname='d2difphsu953nk', host='ec2-50-19-95-77.compute-1.amazonaws.com', port=5432,
+      user='juzjzvinglcfjp', password='c422d72e8217e6db42dab7d0d414a3283464294e7d3aae8e3d92d82964437a14', sslmode='require')
 
 @app.route('/')
 @app.route('/index')

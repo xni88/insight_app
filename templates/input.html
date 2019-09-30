@@ -67,16 +67,28 @@
 
      <form action="/db_fancy" method="GET">
        <div class="form-group">
-         <label for="NDC">
-          <span>Drug NDC number:</span>
-          <input type="text" id="NDCs" name='NDCs' placeholder="e.g. ">
-        </label> 
-        &nbsp;
-        &nbsp;
-        <label for="Drug">
+
+        <label for="drug"></label>
           <span>Drug name:</span>
-          <input type="text" id="Drugs" name="Drugs", placeholder="e.g. ">
-        </label>
+          <input list='druglist' id="drug" name="drug" placeholder="e.g. "/>
+           <datalist id="druglist">
+        {% for drug in druglist %}
+        <option value= "{{drug}}">
+        {% endfor %}
+      </datalist>
+
+<!--      <label for="ice-cream-choice">Choose a flavor:</label>
+<input list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice" />
+
+<datalist id="ice-cream-flavors">
+    <option value="Chocolate">
+    <option value="Coconut">
+    <option value="Mint">
+    <option value="Strawberry">
+    <option value="Vanilla">
+</datalist>-->
+
+        
          
 
        </div>

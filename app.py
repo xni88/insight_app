@@ -24,7 +24,8 @@ con = psycopg2.connect(dbname='d2difphsu953nk', host='ec2-50-19-95-77.compute-1.
 @app.route('/')
 @app.route('/index')
 def index():
-   return render_template("input.html")
+    druglist=pd.read_csv('./static/data/druglist.csv')
+    return render_template("input.html",druglist=druglist['Drugname'].tolist())
 
 @app.route('/about')
 def about():

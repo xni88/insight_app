@@ -21,11 +21,20 @@ app = Flask(__name__)
 con = psycopg2.connect(dbname='d2difphsu953nk', host='ec2-50-19-95-77.compute-1.amazonaws.com', port=5432,
       user='juzjzvinglcfjp', password='c422d72e8217e6db42dab7d0d414a3283464294e7d3aae8e3d92d82964437a14', sslmode='require')
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
     druglist=pd.read_csv('./static/data/druglist.csv')
-    return render_template("input.html",druglist=druglist['Drugname'].tolist())
+    drugpredictions=pd.read_csv('./static/data/predictionofdrugdemand.csv')
+    
+    table = drugpredictions[drugpredictions['drug'] == "Briellyn Tablet"]
+
+    if request.method == "POST":
+        drug = request.form["drug"]
+        table = drugpredictions[drugpredictions['drug'] == drug]
+
+
+    return render_template("input.html",druglist=druglist['Drugname'].tolist(), drugname=table['drug'].tolist()[0], days7=table['7_days'].tolist()[0], days14=table['14_days'].tolist()[0],days30=table['30_days'].tolist()[0])
 
 @app.route('/about')
 def about():
@@ -71,7 +80,7 @@ def druginventory_page_fancy():
    plt.clf()
    image = base64.b64encode(img.read()).decode('utf-8')
 
-   return render_template('drug_inventory.html', NDCs=NDCs, image=image)
+   return render_template('drug_inventory.html', output=NDCs, image=image)
 
 
 if __name__ == '__main__':

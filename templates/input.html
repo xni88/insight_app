@@ -59,13 +59,14 @@
 <div class="container">
 
    <div class="starter-template">
-       <h2>Input Drug NDC number to find the drug's dispensing information</h2>
+       <h2>Input Drug name to find the drug's dispensing information</h2>
        <p>Enter user input</p>
    </div>
 
-   <div class = "container">
+<div class="row">
+   <div class = "col-sm-4">
 
-     <form action="/db_fancy" method="GET">
+     <form action="/" method="POST">
        <div class="form-group">
 
         <label for="drug"></label>
@@ -76,9 +77,6 @@
         <option value= "{{drug}}">
         {% endfor %}
       </datalist>
-
-
-
         
          
 
@@ -90,6 +88,16 @@
 
      </form>
    </div>
+
+<div class="col-sm-8">
+
+<table class="table table-hover">
+<tr><th>Drugname</th><th>7_days</th><th>14_days</th><th>30_days</th></tr>
+<tr><td>{{ drugname }}</td><td>{{ days7 }}</td><td>{{ days14 }}</td><td>{{ days30 }}</td></tr>
+</table>
+
+ </div>
+</div>
 
    <div class = "container">
 

@@ -25,7 +25,7 @@ con = psycopg2.connect(dbname='d2difphsu953nk', host='ec2-50-19-95-77.compute-1.
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     druglist=pd.read_csv('./static/data/druglist.csv')
-    drugpredictions=pd.read_csv('./static/data/predictionofdrugdemand.csv')
+    drugpredictions=pd.read_csv('./static/data/predictionofdrugdemandbyname_2.csv')
     
     table = drugpredictions[drugpredictions['drug'] == "Briellyn Tablet"]
 
